@@ -59,8 +59,8 @@ afterEvaluate {
                 name = "GitHubPackages"
                 url = uri("https://maven.pkg.github.com/NicoMederoReLearn/AndroidUSBCamera")
                 credentials {
-                    username = findProperty("github.actor")
-                    password = findProperty("github.token")
+                    username = project.findProperty("github.actor") ?: ""
+                    password = project.findProperty("github.token") ?: ""
                 }
             }
         }
