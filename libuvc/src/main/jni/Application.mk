@@ -32,3 +32,8 @@ APP_PLATFORM := android-14
 APP_ABI :=arm64-v8a armeabi-v7a x86 x86_64
 #APP_OPTIM := debug
 APP_OPTIM := release
+
+# Support for 16KB page sizes
+APP_CFLAGS += -DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=1
+APP_LDFLAGS += -Wl,-z,max-page-size=16384
+
