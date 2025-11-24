@@ -49,7 +49,7 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.findByName('release') ?: components.findByName('java')
-                groupId = 'com.github.chenyeju295'
+                groupId = 'com.nando.androidusbcamera'
                 artifactId = 'libausbc'
                 version = rootProject.ext.versionNameString
             }
