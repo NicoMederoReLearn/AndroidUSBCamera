@@ -16,11 +16,11 @@
 package com.jiangdg.ausbc.utils
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
-import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -52,12 +52,20 @@ object Utils  {
         return targetSdkVersion >= Build.VERSION_CODES.P
     }
 
+    @SuppressLint("MissingPermission")
     fun getGpsLocation(context: Context?): Location? {
         context?.let { ctx->
             val locationManager = ctx.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-            val locPermission = ContextCompat.checkSelfPermission(ctx, Manifest.permission.ACCESS_FINE_LOCATION)
-            if (locPermission == PackageManager.PERMISSION_GRANTED) {
-                return locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER)
+            val hasFinePermission = ContextCompat.checkSelfPermission(ctx, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+            val hasCoarsePermission = ContextCompat.checkSelfPermission(ctx, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+
+            if (hasFinePermission || hasCoarsePermission) {
+                return try {
+                    locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER)
+                } catch (e: SecurityException) {
+                    e.printStackTrace()
+                    null
+                }
             }
         }
         return null
