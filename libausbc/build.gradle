@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+    namespace 'com.jiangdg.ausbc'
     compileSdkVersion rootProject.ext.versionCompiler
 
     defaultConfig {
@@ -47,7 +48,7 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                from components.release
+                from components.findByName('release') ?: components.findByName('java')
                 groupId = 'com.github.chenyeju295'
                 artifactId = 'libausbc'
                 version = rootProject.ext.versionNameString

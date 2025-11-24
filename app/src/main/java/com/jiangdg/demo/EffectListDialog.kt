@@ -29,6 +29,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.jiangdg.ausbc.base.BaseDialog
 import com.jiangdg.ausbc.render.effect.bean.CameraEffect
+import com.jiangdg.ausbc.R as AusbcR
 import com.jiangdg.utils.MMKVUtils
 import com.jiangdg.ausbc.utils.Utils
 import com.jiangdg.utils.imageloader.ImageLoaders
@@ -112,7 +113,7 @@ class EffectListDialog(activity: Activity) : BaseDialog(activity, portraitWidthR
                     R.drawable.ic_tab_line_blue
                 )
                 mFilterTabBtn?.typeface = Typeface.DEFAULT
-                mFilterTabBtn?.setTextColor(getDialog().context.resources.getColor(R.color.common_a8_black))
+                mFilterTabBtn?.setTextColor(getDialog().context.resources.getColor(AusbcR.color.common_a8_black))
                 mFilterTabBtn?.setCompoundDrawablesWithIntrinsicBounds(
                     0,
                     0,
@@ -134,7 +135,7 @@ class EffectListDialog(activity: Activity) : BaseDialog(activity, portraitWidthR
             R.drawable.ic_tab_line_blue
         )
         mAnimTabBtn?.typeface = Typeface.DEFAULT
-        mAnimTabBtn?.setTextColor(getDialog().context.resources.getColor(R.color.common_a8_black))
+        mAnimTabBtn?.setTextColor(getDialog().context.resources.getColor(AusbcR.color.common_a8_black))
         mAnimTabBtn?.setCompoundDrawablesWithIntrinsicBounds(
             0,
             0,
@@ -178,7 +179,7 @@ class EffectListDialog(activity: Activity) : BaseDialog(activity, portraitWidthR
                     R.drawable.ic_tab_line_blue
                 )
                 mAnimTabBtn?.typeface = Typeface.DEFAULT
-                mAnimTabBtn?.setTextColor(getDialog().context.resources.getColor(R.color.common_a8_black))
+                mAnimTabBtn?.setTextColor(getDialog().context.resources.getColor(AusbcR.color.common_a8_black))
                 mAnimTabBtn?.setCompoundDrawablesWithIntrinsicBounds(
                     0,
                     0,
@@ -198,7 +199,7 @@ class EffectListDialog(activity: Activity) : BaseDialog(activity, portraitWidthR
                     R.drawable.ic_tab_line_blue
                 )
                 mFilterTabBtn?.typeface = Typeface.DEFAULT
-                mFilterTabBtn?.setTextColor(getDialog().context.resources.getColor(R.color.common_a8_black))
+                mFilterTabBtn?.setTextColor(getDialog().context.resources.getColor(AusbcR.color.common_a8_black))
                 mFilterTabBtn?.setCompoundDrawablesWithIntrinsicBounds(
                     0,
                     0,
@@ -260,10 +261,10 @@ private class EffectListAdapter :
         helper.setText(R.id.effectName, item.name)
         helper.getView<ImageView>(R.id.effectIv).also {
             item.coverResId?.apply {
-                ImageLoaders.of(mContext).loadCircle(it, this, R.drawable.effect_none)
+                ImageLoaders.of(mContext).loadCircle(it, this, AusbcR.drawable.effect_none)
                 return@also
             }
-            ImageLoaders.of(mContext).loadCircle(it, item.coverUrl, R.drawable.effect_none)
+            ImageLoaders.of(mContext).loadCircle(it, item.coverUrl, AusbcR.drawable.effect_none)
         }
         helper.addOnClickListener(R.id.effectIv)
         // update check status

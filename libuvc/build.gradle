@@ -3,10 +3,10 @@ plugins {
 	id 'maven-publish'
 }
 
-import org.apache.tools.ant.taskdefs.condition.Os
 
 
 android {
+	namespace 'com.jiangdg.libuvc'
 	compileSdkVersion rootProject.ext.versionCompiler
 	buildToolsVersion rootProject.ext.versionBuildTool
 
@@ -72,7 +72,7 @@ afterEvaluate {
 	publishing {
 		publications {
 			release(MavenPublication) {
-				from components.release
+				from components.findByName('release') ?: components.findByName('java')
 				groupId = 'com.github.chenyeju295'
 				artifactId = 'libuvc'
 				version = rootProject.ext.versionNameString
