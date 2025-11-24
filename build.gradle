@@ -1,4 +1,18 @@
 // Top-level build file where you can add configuration options libuvccommon to all sub-projects/modules.
+
+// Load local.properties for GitHub credentials
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withInputStream { localProperties.load(it) }
+}
+
+// Make properties available to all projects
+allprojects {
+    ext.set("github.actor", localProperties.getProperty("github.actor", ""))
+    ext.set("github.token", localProperties.getProperty("github.token", ""))
+}
+
 buildscript {
     repositories {
         google()
